@@ -5,13 +5,12 @@ class MenuItem extends React.Component
   render()
   {
     return(
-      <div 
-      style={{
+      <div className={`${this.props.size} menu-item`}>
+      <div className='background-image' style={{
         backgroundImage:(`url(${this.props.image})`)
-      }}
-      className={`${this.props.size} menu-item`}>
+      }}></div>
       <div className="content">
-        <h1 className="title">{this.props.title}</h1>
+        <h1 className="title">{this.props.title.toUpperCase()}</h1>
         <span className="subtitle">SHOP NOW</span>
       </div>
       </div>
