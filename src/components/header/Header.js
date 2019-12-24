@@ -3,8 +3,7 @@ import './header.styles.scss'
 import  {ReactComponent as Logo} from './crown.svg'
 import {Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
-class Header extends React.Component{
-  render(){
+function Header(props){
     return(
     <div className="header">
       <Link className='logo-container' to='/'>
@@ -18,10 +17,10 @@ class Header extends React.Component{
          CONTACT
         </Link>
         {
-          this.props.currentUser ?
+          props.currentUser ?
           <div className="option" onClick={()=>auth.signOut()}> Sign Out </div>
           :
-          <Link>Sign In </Link>
+          <Link>SIGN IN </Link>
         }
 
       </div>
@@ -29,6 +28,6 @@ class Header extends React.Component{
     </div>
     )
   }
-}
+
 
 export default Header;

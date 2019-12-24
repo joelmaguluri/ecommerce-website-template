@@ -7,7 +7,7 @@ import SignInSignUp from './pages/signin-and-singup/signin-and-singup'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './index.css'
 import {auth} from './firebase/firebase.utils'
-
+import {createUserProfileDocument} from './firebase/firebase.utils'
  class App extends React.Component
 {
   constructor(){
@@ -17,11 +17,23 @@ import {auth} from './firebase/firebase.utils'
     }; 
   } 
   unsubscribeFromAuth=null
-  componentDidMount(){
-    this.unsubscribeFromAuth=auth.onAuthStateChanged(user=>{
-      this.setState({currentUser:user});
-      console.log(user); 
-    })
+  componentDidMount()
+  {
+    this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth=>{
+      //this.setState({currentUser:user});
+    
+      createUserProfileDocument(userAuth);
+      
+        /*userRef.onSnapshot(snapshot=>{
+          this.setState({
+            currentUser:{
+              id:snapshot.id,
+              ...snapshot.data()
+            }
+          })
+        })*/
+        this.setState({currentUser:userAuth});
+      })
   }
 
   componentWillUnmount(){
