@@ -30,12 +30,14 @@ if(!snapshot.exists)
         displayName,email,createdAt,
         ...additionalData
       })
+     
     }
      catch(err)
      {
        console.log(err);
      }
    }
+   return userRef;
 }
 
 export default firebase;

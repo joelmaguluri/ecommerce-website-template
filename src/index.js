@@ -22,7 +22,7 @@ import {createUserProfileDocument} from './firebase/firebase.utils'
     this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth=>{
       //this.setState({currentUser:user});
     
-      createUserProfileDocument(userAuth);
+     await createUserProfileDocument(userAuth)
       
         /*userRef.onSnapshot(snapshot=>{
           this.setState({
