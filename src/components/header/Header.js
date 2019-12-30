@@ -5,9 +5,11 @@ import {Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 import {connect} from 'react-redux'
 import CartIcon from '../cart-icon/CartIcon'
+import CartDropdown from '../cart-dropdown/CartDropDown'
 class Header extends React.Component{
     render(){
-    const {currentUser}=this.props;
+    const {currentUser,hidden}=this.props;
+    console.log("hidden is "+hidden)
     return(
     <div className="header">
       <Link className='logo-container' to='/'>
@@ -29,7 +31,7 @@ class Header extends React.Component{
         }
        <CartIcon/>
       </div>
-     
+      {hidden ? null:<CartDropdown/>}
     </div>
     )
     
@@ -37,7 +39,8 @@ class Header extends React.Component{
 }
   const mapStateToProps=state=>(  
   {
-    currentUser:state.user.currentUser
+    currentUser:state.user.currentUser,
+    hidden:state.cart.hidden
   })
 
  export default connect(mapStateToProps)(Header);
